@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BUNZZZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- استيراد الخطوط المطلوبة -->
+    <link href="https://fonts.googleapis.com/css2?family=Oi&family=Blaka&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shirkhand&display=swap" rel="stylesheet">
+
+    <style>
+        /* تعيين الخلفية للصورة المطلوبة */
+        body {
+            background-image: url('https://i.postimg.cc/9Qw3dtk4/Loding-1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* تحسين عرض الصفحة */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* تنسيق العنوان */
+        .title {
+            font-family: 'Blaka', cursive;
+            font-size: 32px;
+        }
+
+        /* أزرار اختيار الفئة */
+        .category-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .category-buttons button {
+            width: 220px;
+            font-size: 22px;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            transition: 0.3s ease-in-out;
+            font-family: 'Oi', cursive;
+        }
+
+        .category-buttons .beef-btn {
+            background-color: white;
+            color: black;
+        }
+
+        .category-buttons .chicken-btn {
+            background-color: #ffbb33;
+            color: black;
+        }
+
+        .category-buttons button:hover {
+            transform: scale(1.1);
+        }
+
+        /* تصميم المنتجات */
+        .products-container {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .brand-name {
+    font-family: 'Shirkhand', cursive; /* الخط المطلوب */
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.brand-name .bu {
+    color: yellow;
+}
+
+.brand-name .n {
+    color: white;
+}
+
+.brand-name .zzz {
+    color: red;
+}
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 6px 12px rgba(235, 234, 234, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+/* لون خط المنتجات ووصفها بالأسود */
+.product-card h3, .product-card p {
+    color: rgb(255, 255, 255) !important;
+}
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* زر السعر */
+        .price-btn {
+            background-color: rgb(0, 0, 0) !important;
+            color: white !important;
+            font-size: 20px;
+            border-radius: 15px;
+            padding: 10px 20px;
+            border: none;
+            font-family: 'Blaka', cursive;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div> <!-- طبقة تحسين الوضوح -->
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">BUNZZZ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">المنيو</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">عنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container py-5">
+        <h2 class="fw-bold title">🍔 اختر نوع البرجر الذي تفضله 🔥</h2>
+
+        <!-- أزرار الفئات -->
+        <div class="category-buttons">
+            <button class="btn beef-btn" onclick="showCategory('beef')">برجر اللحم 🥩</button>
+            <button class="btn chicken-btn" onclick="showCategory('chicken')">برجر الدجاج 🍗</button>
+        </div>
+
+        <!-- منتجات برجر اللحم -->
+        <div id="beef" class="products-container row gy-4" style="display: none;">
+            <!-- 14 منتج لحم -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://i.postimg.cc/4xjr37Bz/snapedit-1739224050345.png" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">OLD SCHOOL</h3>
+                    <p>بيف برجر + صوص شيدر + صوص بانز</p>
+                    <button class="price-btn">(M  70) (L  80)</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://i.postimg.cc/Y0SXRMdr/snapedit-1739224306177.png" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">GOLDEN</h3>
+                    <p>بيف برجر + اصابع الموتزاريلا + صوص شيدر + صوص بانز</p>
+                    <button class="price-btn">(M  90) (L  105)</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر اللحم" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍔 برجر اللحم</h3>
+                    <p>لحم مشوي مع الجبن والخضار الطازجة</p>
+                    <button class="price-btn">25 ريال</button>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+        
+
+        <!-- منتجات برجر الدجاج -->
+        <div id="chicken" class="products-container row gy-4" style="display: none;">
+            <!-- 10 منتجات دجاج -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300" alt="برجر الدجاج" class="img-fluid" style="border-radius: 15px;">
+                    <h3 style="font-family: 'Oi', cursive;">🍗 برجر الدجاج</h3>
+                    <p>دجاج مقرمش مع الخس وصلصة خاصة</p>
+                    <button class="price-btn">20 ريال</button>
+                </div>
+            </div>
+        </div>
+        
+
+    </section>
+
+    <script>
+        function showCategory(category) {
+            document.getElementById('beef').style.display = (category === 'beef') ? 'flex' : 'none';
+            document.getElementById('chicken').style.display = (category === 'chicken') ? 'flex' : 'none';
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
